@@ -4,14 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    />
   </head>
   <body>
-    <form action="http://localhost:8888/submit" method="post">
-      <LABEL
-        >NAME:
+    <form
+      action="http://localhost:8888/submit"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <label
+        >Name:
         <input type="text" name="name" id="name" />
-      </LABEL>
-      <button type="submit">Submit</button>
+      </label>
+      <label
+        >Content 1:
+        <input type="text" name="content1" id="content1" />
+      </label>
+      <label
+        >Content 2:
+        <input type="text" name="content2" id="content2" />
+      </label>
+      <label
+        >File:
+        <input type="file" name="file" id="file" />
+      </label>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <div class="container">
+      <div class="row">
+        <% users.forEach(user => { %>
+        <div class="col-sm-4">
+          <div class="card" style="width: 18rem">
+            <img
+              src="/uploads/<%= user.file %>"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= user.name %></h5>
+              <p class="card-text"><%= user.content1 %></p>
+              <p class="card-text"><%= user.content2 %></p>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
   </body>
 </html>
